@@ -1,0 +1,19 @@
+# This is Git's per-user configuration file.
+[user]
+	name = ## NAME
+	email = ## EMAIL
+[alias]
+	co = checkout
+	cob = checkout -b
+	c = commit
+	a = add
+	s = status
+	d = diff
+	dl = diff --name-status
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+	## TODO Add prints with the commands being ran
+	## TODO exclude current branch from 'listmerged': wrap the command in a shell function, save the current branch name to a variable and exclude it with '-v -e'
+	listmerged = ! git branch --merged | grep -v -e master -e develop ## Find all remote branches that have been merged into master excluding master and develop (always includes current branch)
+	cleanmerged = ! git branch --merged | grep -v -e master -e develop | xargs git branch -d ## Delete all local branches that have been merged into master excluding master and develop
+	listfilesdiff = "!f() { if [ -z \"$1\" ]; then echo \"Input which branch to compare against\"; else git diff --name-status \"$1\"; fi }; f"
+
