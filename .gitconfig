@@ -9,13 +9,14 @@
 	a = add
 	s = status
 	d = diff
-	dl = diff --name-status
+	getremote = ! git config --get remote.origin.url
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 	## TODO Add prints with the commands being ran
 	## TODO exclude current branch from 'listmerged': wrap the command in a shell function, save the current branch name to a variable and exclude it with '-v -e'
-	listmerged = ! git branch --merged | grep -v -e master -e develop ## Find all local branches that have been merged into master excluding master and develop (always includes current branch)
+	listmerged = ! git branch --merged | grep -v -e master -e develop ## Find all (still existing) local branches that have been merged into master excluding master and develop (always includes current branch)
 	cmlocal = ! git branch --merged | grep -v -e master -e develop | xargs git branch -d ## Delete all local branches that have been merged into master excluding master/main and develop
 	cmremote = ! git branch -r --merged develop | grep 'origin/' | egrep -v '(^\\*|master|main|develop)' | sed 's/origin\\/*//' | xargs git push origin -d ## Delete all remote branches that have been merged into master excluding master/main and develop
-	lsdiff = "!f() { if [ -z \"$1\" ]; then echo \"Input which branch to compare against\"; else git diff --name-status \"$1\"; fi }; f" ## List files which differ between two branches
+	lsdiff = diff --name-status ## List files which differ with remote
+	lsdiffbranch = "!f() { if [ -z \"$1\" ]; then echo \"Input which branch to compare against\"; else git diff --name-status \"$1\"; fi }; f" ## List files which differ between two branches
 	diffr = "!f() { currBranch=`git branch --no-color 2> /dev/null | sed -e '/^[^*]/d'`; currBranch="${currBranch:2}"; git diff origin/$currBranch; }; f" ## Diff between the current branch's local and remote
 	deletedone = "!f() { git fetch -p && git branch -vv | \\\n  perl -wne 'print \"$1\\n\" if m/^\\s*(\\S+)\\s+[0-9a-f]+\\s+\\[\\S+: gone\\]/;' | \\\n  xargs git branch -d; }; f" ## Delete local branches with no correlative in remote
