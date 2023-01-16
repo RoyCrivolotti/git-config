@@ -6,6 +6,7 @@
 	co = checkout
 	cob = checkout -b
 	c = commit
+	ce = ! git commit -m \"Empty commit\" --allow-empty
 	a = add
 	s = status
 	d = diff
