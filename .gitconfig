@@ -63,12 +63,12 @@
         green=$(tput setaf 2); \
         cyan=$(tput setaf 6); \
         reset=$(tput sgr0); \
-        printf \"%b%-19s %-15s %-10s%b\\n\" \"$green\" \"Commit Date\" \"Relative Time\" \"Branch\" \"$reset\"; \
+        printf \"%b%-20s %-16s %-1s%b\\n\" \"$green\" \"Commit Date\" \"Relative Time\" \"Branch\" \"$reset\"; \
         for k in $(git branch | perl -pe 's/^..//'); do \
             commit_info=$(git show --pretty=format:\"%cd %cr\" --date=format:'%Y-%m-%d %H:%M:%S' $k -- | head -n 1); \
             commit_date=$(echo $commit_info | awk '{print $1, $2}'); \
             commit_time=$(echo $commit_info | awk '{print $3}'); \
             commit_relative=$(echo $commit_info | awk '{print $4, $5, $6}'); \
-            printf \"%b%-19s  %b%-15s%b  %s%b\\n\" \"$green\" \"$commit_date $commit_time\" \"$cyan\" \"$commit_relative\" \"$reset\" \"$k\" \"$reset\"; \
+            printf \"%b%-19s  %b%-15s%b  %s%b\\n\" \"$green\" \"$commit_date\" \"$cyan\" \"$commit_time $commit_relative\" \"$reset\" \"$k\" \"$reset\"; \
         done | sort -r; \
     }; f" ## Display branch information with commit date and relative time
