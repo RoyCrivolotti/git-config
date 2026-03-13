@@ -1,12 +1,13 @@
 [user]
     email = roycrivolotti@gmail.com
     name = Roy Crivolotti
+	signingkey = /Users/roy.adm/.ssh/id_ed25519.pub
 
 [alias]
     co = checkout
     cob = checkout -b
     c = commit
-    ce = ! git commit -m "Empty commit" --allow-empty
+    ce = ! git commit -m \"Empty commit\" --allow-empty
     a = add
     s = status
     d = diff
@@ -72,3 +73,8 @@
             printf \"%b%-19s  %b%-15s%b  %s%b\\n\" \"$green\" \"$commit_date\" \"$cyan\" \"$commit_time $commit_relative\" \"$reset\" \"$k\" \"$reset\"; \
         done | sort -r; \
     }; f" ## Display branch information with commit date and relative time
+	pushr = !git push --set-upstream origin $(git branch --show-current)
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
