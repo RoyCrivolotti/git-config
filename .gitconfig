@@ -1,7 +1,6 @@
 [user]
     email = roycrivolotti@gmail.com
     name = Roy Crivolotti
-	signingkey = /Users/roy.adm/.ssh/id_ed25519.pub
 
 [alias]
     co = checkout
@@ -74,7 +73,3 @@
         done | sort -r; \
     }; f" ## Display branch information with commit date and relative time
 	pushr = !git push --set-upstream origin $(git branch --show-current)
-[gpg]
-	format = ssh
-[commit]
-	gpgsign = true
