@@ -19,7 +19,7 @@
     lastfiles = diff-tree --no-commit-id --name-status -r HEAD
 
     # Same as above, but with commit message
-    Lastfilesm = show --name-status --oneline HEAD
+    lastfilesm = show --name-status --oneline HEAD
 
     # Show changed files
     lsdiff = diff --name-status
