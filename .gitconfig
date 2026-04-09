@@ -6,7 +6,7 @@
     co = checkout
     cob = checkout -b
     c = commit
-    ce = commit --allow-empty -m "Empty commit"
+    ce = ! git commit -m \"Empty commit\" --allow-empty
     a = add
     s = status -sb
     d = diff
@@ -54,5 +54,4 @@
             printf \"%b%-19s  %b%-15s%b  %s%b\\n\" \"$green\" \"$commit_date\" \"$cyan\" \"$commit_time $commit_relative\" \"$reset\" \"$k\" \"$reset\"; \
         done | sort -r; \
     }; f" ## Display branch information with commit date and relative time
-
 
