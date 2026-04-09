@@ -8,7 +8,7 @@
     c = commit
     ce = commit --allow-empty -m "Empty commit"
     a = add
-    s = status
+    s = status -sb
     d = diff
     amend = commit --amend --no-edit
     pushr = !git push --set-upstream origin $(git branch --show-current)
