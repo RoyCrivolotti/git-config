@@ -15,6 +15,12 @@
     getremote = remote get-url origin
     alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 
+    # Fetch latest main from origin and rebase current branch onto it
+    rebasemain = "!git fetch origin main && git rebase origin/main"
+
+    # Amend last commit without editing the message, then safely force-push current branch
+    amendpush = "!git commit --amend --no-edit && git push --force-with-lease origin HEAD"
+
     # List files changed by latest commit
     lastfiles = diff-tree --no-commit-id --name-status -r HEAD
 
